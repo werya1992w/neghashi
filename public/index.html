@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>نقاشی و حدس</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232d3e50'/%3E%3Cpath d='M7 24 L22 9 L25 12 L10 27 Z' fill='%2306d6a0'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<!-- صفحهٔ اصلی -->
+<section id="home" class="screen">
+  <div class="home-card">
+    <h1>نقاشی و حدس</h1>
+    <p class="sub">با دوستانت نقاشی بکش و کلمه را حدس بزن</p>
+    <label for="nameInput">نام شما</label>
+    <input id="nameInput" maxlength="16" placeholder="مثلاً رضا" autocomplete="off">
+    <div id="joinHint" class="join-hint hidden"></div>
+    <button id="btnQuick" class="btn primary big">بازی سریع</button>
+    <div class="row">
+      <button id="btnCreate" class="btn">ساخت اتاق خصوصی</button>
+    </div>
+    <div class="row join">
+      <input id="codeInput" maxlength="12" placeholder="کد اتاق" autocomplete="off" dir="ltr">
+      <button id="btnJoin" class="btn">ورود با کد</button>
+    </div>
+    <div id="homeError" class="error hidden"></div>
+  </div>
+</section>
+
+<!-- صفحهٔ بازی -->
+<section id="game" class="screen hidden">
+  <header>
+    <h1>نقاشی و حدس</h1>
+    <div class="room-wrap">
+      <button id="btnLeave" class="leave">خروج</button>
+      <div class="room">اتاق: <span id="roomCode" dir="ltr"></span></div>
+    </div>
+  </header>
+
+  <div class="status">
+    <div class="turn" id="turnLabel"></div>
+    <div class="word" id="wordArea"></div>
+    <div class="timer"><span id="timeText"></span><div class="bar"><div id="barFill"></div></div></div>
+  </div>
+
+  <main>
+    <section class="card players-card">
+      <h2>بازیکنان</h2>
+      <div id="players"></div>
+    </section>
+
+    <section class="center">
+      <div class="canvas-wrap" id="canvasWrap">
+        <div class="canvas-box" id="canvasBox">
+          <canvas id="canvas" width="800" height="600"></canvas>
+          <div id="overlay" class="overlay hidden"></div>
+        </div>
+      </div>
+      <div class="tools" id="tools">
+        <div class="swatches" id="swatches"></div>
+        <div class="sep"></div>
+        <div class="sizes" id="sizes"></div>
+        <button class="clear" id="btnClear">پاک‌کردن</button>
+      </div>
+    </section>
+
+    <section class="card chat">
+      <h2>چت</h2>
+      <div class="msgs" id="msgs"></div>
+      <form class="inrow" id="chatForm" autocomplete="off">
+        <input id="chatInput" class="inp" maxlength="100" placeholder="حدس بزن...">
+        <button class="send" type="submit">ارسال</button>
+      </form>
+    </section>
+  </main>
+</section>
+
+<script src="/app.js"></script>
+</body>
+</html>
