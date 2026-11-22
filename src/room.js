@@ -8,6 +8,19 @@ const GAME_END_MS = 20000;
 const MAX_STROKES = 3000;
 const COLORS = ["#ef476f", "#118ab2", "#ffa62b", "#7b5ea7", "#06d6a0", "#e76f51", "#2a9d8f", "#b5179e"];
 
+// کلمات سفارشی از Config (ادمین)؛ اگر نبود یا خطا بود، فهرست پیش‌فرض
+let wordCache = { list: null, at: 0 };
+async function loadWords(env) {
+  if (wordCache.list && Date.now() - wordCache.at < 30000) return wordCache.list;
+  let list = WORDS;
+  try {
+    const r = await env.CONFIG.getByName("main").getWords();
+    if (r.custom && r.words.length >= 10) list = r.words;
+  } catch {}
+  wordCache = { list, at: Date.now() };
+  return list;
+}
+
 const fa = (n) => String(n).replace(/\d/g, (d) => "۰۱۲۳۴۵۶۷۸۹"[d]);
 const isGap = (c) => c === " " || c === "‌";
 
@@ -269,7 +282,7 @@ export class GameRoom extends DurableObject {
     s.guessedOrder = [];
     s.revealed = [];
     s.hintSchedule = [];
-    s.options = this.pickWords(3);
+    s.options = await this.pickWords(3);
     s.phase = "choosing";
     s.turnTotal = CHOOSE_MS;
     s.endsAt = Date.now() + CHOOSE_MS;
@@ -281,10 +294,11 @@ export class GameRoom extends DurableObject {
     await this.scheduleAlarm();
   }
 
-  pickWords(n) {
+  async pickWords(n) {
     const s = this.s;
-    let pool = WORDS.filter((w) => !s.used.includes(w));
-    if (pool.length < n) { s.used = []; pool = WORDS.slice(); }
+    const all = await loadWords(this.env);
+    let pool = all.filter((w) => !s.used.includes(w));
+    if (pool.length < n) { s.used = []; pool = all.slice(); }
     return shuffle(pool).slice(0, n);
   }
 
