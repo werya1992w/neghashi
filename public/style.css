@@ -10,13 +10,14 @@ input,select{font-family:inherit}
 .screen{height:100vh;height:100dvh;display:flex;flex-direction:column}
 
 /* ---------- ورود ---------- */
-#home{position:relative;background:#0e0f0d;overflow:hidden;align-items:center}
-#home .scene{position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(100vw,calc(100dvh * .9647));height:auto;display:block;pointer-events:none;user-select:none;
+#home{position:relative;background:#0e0f0d;overflow:hidden;align-items:center;--w:min(100vw,calc(100dvh * .9647));--h:calc(var(--w) * 1.0366)}
+#home .scene{position:absolute;top:0;left:50%;transform:translateX(-50%);width:var(--w);height:auto;display:block;pointer-events:none;user-select:none;
   -webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,#000 86%,transparent);
   -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,#000 86%,transparent);mask-composite:intersect}
-.home-card{position:absolute;bottom:max(1.2dvh,.4rem);left:50%;transform:translateX(-50%);width:min(17rem,86vw);display:grid;grid-template-columns:1fr auto;gap:.35rem;padding:1.4rem .6rem .5rem;color:#f6ecd0;background:linear-gradient(transparent,rgba(10,18,8,.62) 38%)}
-.home-card h1{grid-column:1/-1;font-size:1.1rem;font-weight:800;text-align:center;line-height:1.3;text-shadow:0 1px 6px #000}
-.home-card #nameInput,.home-card #btnQuick,.home-card #btnCreate,.home-card #homeError,.home-card .join-hint{grid-column:1/-1}
+/* tall screens: the form starts where the rug starts; wide screens: it sits at the bottom edge of the picture */
+.home-card{position:absolute;top:calc(var(--h) * .715);left:50%;transform:translateX(-50%);width:min(19rem,calc(var(--w) * .74));display:grid;grid-template-columns:1fr 1fr;gap:.4rem;padding:1.2rem .5rem .4rem;color:#f6ecd0;background:linear-gradient(transparent,rgba(10,18,8,.55) 40%)}
+.home-card h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.home-card #nameInput,.home-card #homeError,.home-card .join-hint{grid-column:1/-1}
 .home-card .row{display:contents}
 .home-card input{background:rgba(10,18,8,.3);border:0;border-bottom:1.5px solid rgba(240,214,140,.7);border-radius:8px;padding:.38rem .6rem;font-size:.9rem;color:#fff8e0;width:100%;min-width:0;backdrop-filter:blur(2px)}
 .home-card input::placeholder{color:rgba(246,236,208,.55)}
@@ -27,7 +28,7 @@ input,select{font-family:inherit}
 .btn.primary{background:var(--navy);color:#fff}
 .btn.primary:hover{background:#243241}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.home-card .btn{background:rgba(10,18,8,.3);border:1.5px solid rgba(240,214,140,.75);color:#f6e3a8;text-shadow:0 1px 4px #000;backdrop-filter:blur(2px);padding:.34rem .7rem;font-size:.85rem;border-radius:7px}
+.home-card .btn{background:rgba(10,18,8,.3);border:1.5px solid rgba(240,214,140,.75);color:#f6e3a8;text-shadow:0 1px 4px #000;backdrop-filter:blur(2px);padding:.34rem .5rem;font-size:.85rem;border-radius:7px}
 .home-card .btn:hover{background:rgba(240,214,140,.18)}
 .home-card .btn.primary{background:rgba(214,170,70,.34);color:#fff4cc;font-size:.95rem}
 .home-card .btn.primary:hover{background:rgba(214,170,70,.5)}
@@ -36,19 +37,7 @@ input,select{font-family:inherit}
 .row .btn:first-child{flex:1}
 .row input{width:5.8rem;flex:none;text-transform:uppercase;text-align:center;letter-spacing:2px;padding-inline:.4rem}
 .error{color:#ff8fa8;font-weight:600;font-size:.9rem;text-align:center}
-@media (max-height:640px){.home-card h1{display:none}}
-@media (min-aspect-ratio:9/10){
-  .home-card{width:min(21rem,86vw);grid-template-columns:1fr 1fr;padding-top:.9rem}
-  .home-card h1{font-size:1rem}
-  .home-card #btnQuick,.home-card #btnCreate{grid-column:auto}
-  .home-card #codeInput{grid-column:auto}
-  .home-card #btnJoin{grid-column:auto}
-}
-@media (max-aspect-ratio:9/10){
-  #home{--w:min(100vw,calc(100dvh * .9647));--h:calc(var(--w) * 1.0366);--t:max(0px,calc((100dvh - var(--h) - 10rem) / 2))}
-  #home .scene{top:var(--t)}
-  .home-card{bottom:auto;top:calc(var(--t) + var(--h) - 2.6rem)}
-}
+@media (min-aspect-ratio:9/10){.home-card{top:calc(var(--h) - .9rem);transform:translate(-50%,-100%)}}
 
 /* ---------- نوار بالا (جمع‌وجور) ---------- */
 .topbar{height:3.6rem;flex:none;background:var(--navy);color:#fff;display:flex;align-items:center;gap:1.1rem;padding:0 1rem}

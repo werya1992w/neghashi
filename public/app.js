@@ -62,11 +62,16 @@
   $("#nameInput").addEventListener("keydown", (e) => { if (e.key === "Enter") $(hashCode ? "#btnJoin" : "#btnQuick").click(); });
   $("#codeInput").addEventListener("keydown", (e) => { if (e.key === "Enter") $("#btnJoin").click(); });
 
+  // when embedded in the cafe site, tell it which screen is showing
+  function tellHost(v) { try { if (parent !== window) parent.postMessage({ dg: "screen", v }, "*"); } catch {} }
+  tellHost("login");
+
   function enter(c, name, pub) {
     code = c; isPublic = pub; myName = name; leaving = false;
     location.hash = c;
     $("#home").classList.add("hidden");
     $("#game").classList.remove("hidden");
+    tellHost("game");
     $("#roomCode").textContent = c;
     $("#msgs").innerHTML = "";
     clearCanvas();
@@ -84,6 +89,7 @@
     history.replaceState(null, "", location.pathname);
     $("#game").classList.add("hidden");
     $("#home").classList.remove("hidden");
+    tellHost("login");
     homeError(msg || "");
   }
   $("#btnLeave").onclick = () => backHome();
