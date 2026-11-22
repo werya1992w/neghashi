@@ -11,17 +11,15 @@
 
 <!-- ورود -->
 <section id="home" class="screen">
+  <img class="scene" src="/login.webp" alt="" width="1232" height="1277">
   <div class="home-card">
     <h1>نقاشی و حدس</h1>
-    <p class="sub">نقاشی بکش، کلمه را حدس بزن</p>
     <div id="joinHint" class="join-hint hidden"></div>
-    <label for="nameInput">نام شما</label>
-    <input id="nameInput" maxlength="16" placeholder="نام خود را بنویسید" autocomplete="off">
+    <input id="nameInput" maxlength="16" placeholder="نام شما" aria-label="نام شما" autocomplete="off">
     <button id="btnQuick" class="btn primary">شروع بازی</button>
-    <div class="or"><span>یا</span></div>
-    <button id="btnCreate" class="btn">ساخت اتاق خصوصی</button>
-    <div class="row join">
-      <input id="codeInput" maxlength="12" placeholder="کد اتاق" autocomplete="off" dir="ltr">
+    <div class="row">
+      <button id="btnCreate" class="btn">اتاق خصوصی</button>
+      <input id="codeInput" maxlength="12" placeholder="کد اتاق" aria-label="کد اتاق" autocomplete="off" dir="ltr">
       <button id="btnJoin" class="btn">ورود</button>
     </div>
     <div id="homeError" class="error hidden"></div>
