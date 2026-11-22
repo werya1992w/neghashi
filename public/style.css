@@ -39,6 +39,12 @@ input,select{font-family:inherit}
 .error{color:#ff8fa8;font-weight:600;font-size:.9rem;text-align:center}
 @media (min-aspect-ratio:9/10){.home-card{top:calc(var(--h) - .9rem);transform:translate(-50%,-100%)}}
 
+/* embedded as a centred card inside the cafe site: the picture fills the card width, the card is a bit taller
+   than the picture and the form sits at its bottom, only overlapping the lower edge of the rug */
+.card #home{--w:100vw;--h:calc(var(--w) * 1.0366)}
+.card #home .scene{width:100%;-webkit-mask-image:linear-gradient(to bottom,#000 86%,transparent);mask-image:linear-gradient(to bottom,#000 86%,transparent);-webkit-mask-composite:source-over;mask-composite:add}
+.card .home-card{top:auto;bottom:.5rem;transform:translateX(-50%)}
+
 /* ---------- نوار بالا (جمع‌وجور) ---------- */
 .topbar{height:3.6rem;flex:none;background:var(--navy);color:#fff;display:flex;align-items:center;gap:1.1rem;padding:0 1rem}
 .brand{font-weight:800;font-size:1.2rem;white-space:nowrap}
