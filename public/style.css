@@ -37,6 +37,13 @@ input,select{font-family:inherit}
 .row input{width:5.8rem;flex:none;text-transform:uppercase;text-align:center;letter-spacing:2px;padding-inline:.4rem}
 .error{color:#ff8fa8;font-weight:600;font-size:.9rem;text-align:center}
 @media (max-height:640px){.home-card h1{display:none}}
+@media (min-aspect-ratio:9/10){
+  .home-card{width:min(21rem,86vw);grid-template-columns:1fr 1fr;padding-top:.9rem}
+  .home-card h1{font-size:1rem}
+  .home-card #btnQuick,.home-card #btnCreate{grid-column:auto}
+  .home-card #codeInput{grid-column:auto}
+  .home-card #btnJoin{grid-column:auto}
+}
 @media (max-aspect-ratio:9/10){
   #home{--w:min(100vw,calc(100dvh * .9647));--h:calc(var(--w) * 1.0366);--t:max(0px,calc((100dvh - var(--h) - 10rem) / 2))}
   #home .scene{top:var(--t)}
